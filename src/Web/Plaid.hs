@@ -1,11 +1,16 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE TemplateHaskell #-}
 
 -- TODO: Split this file into various modules
 module Web.Plaid where
 
-import Data.Map as M
+import Data.Aeson.TH
+import Data.Char (toLower)
+import qualified Data.Map as M
 import Data.Text (Text)
+
+import Web.Plaid.Internal
 
 data Environment
   = Sandbox
@@ -63,6 +68,8 @@ data PaginationOptions = PaginationOptions
   { _paginationOptions_count :: Int
   , _paginationOptions_offset :: Int
   }
+
+-- $(deriveJSON defaultOptions{fieldLabelModifier = drop 1, constructorTagModifier = quietSnake} ''PaginationOptions)
 
 -- | Response body of getting transactions. Example below
 -- {
@@ -180,3 +187,12 @@ data Item = Item
   , _item_itemId :: Text
   , _item_webhook :: Text
   }
+
+$(deriveJSON' ''TransactionsRequest)
+$(deriveJSON' ''PaginationOptions)
+$(deriveJSON' ''TransactionsResponse)
+$(deriveJSON' ''Transaction)
+$(deriveJSON' ''Location)
+$(deriveJSON' ''Account)
+$(deriveJSON' ''Balances)
+$(deriveJSON' ''Item)
