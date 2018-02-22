@@ -15,10 +15,11 @@ cabal-version:       >=1.10
 
 library
   -- Modules exported by the library.
-  -- exposed-modules:     
+  exposed-modules:     Web.Plaid
+                     , Web.Plaid.Types
   
   -- Modules included in this library but not exported.
-  other-modules:     Web.Plaid.Internal
+  other-modules:       Web.Plaid.Internal
   
   -- LANGUAGE extensions used by modules in this package.
   -- other-extensions:    
