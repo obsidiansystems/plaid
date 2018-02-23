@@ -9,6 +9,11 @@ import Data.Text (Text)
 
 import Web.Plaid.Internal
 
+data Environment
+  = Sandbox
+  | Development
+  | Production
+
 type Date = Text -- TODO: use actual date type
 
 type Money = Float -- TODO: choose a safe type for money.

@@ -8,12 +8,14 @@ import Data.List (elemIndices)
 import Language.Haskell.TH
 import Text.Casing (fromHumps, toQuietSnake)
 
+-- | deriveJSON that works with Obsidian-style record field naming
 deriveJSON' :: Name -> Q [Dec]
 deriveJSON' = deriveJSON
-  (defaultOptions { fieldLabelModifier = toQuietSnake . fromHumps . (drop `bubbleCompose` fieldPrefixCount)
+  (defaultOptions { fieldLabelModifier = toQuietSnake . fromHumps . stripRecordPrefix
                   })
 
-bubbleCompose f g x = f (g x) x
-
-fieldPrefixCount :: String -> Int
-fieldPrefixCount = ((+) 1) . head . tail . elemIndices '_'
+-- XXX: This will runtime error out unless the field name is of the format `_{recordName}_{fieldName}`
+-- Ideally we should figure out a way to enforce this constraint in the compiler.
+stripRecordPrefix :: String -> String
+stripRecordPrefix s = drop n s
+  where n = 1 + (elemIndices '_' s !! 1)

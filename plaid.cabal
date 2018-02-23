@@ -27,11 +27,13 @@ library
   -- Other library packages from which modules are imported.
   build-depends:       base
                      , aeson
+                     , data-default-class
                      , req
                      , text
                      , casing
                      , containers
                      , template-haskell
+                     , wreq
   
   -- Directories containing source files.
   hs-source-dirs:      src
