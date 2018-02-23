@@ -17,6 +17,7 @@ data Environment
 type Date = Text -- TODO: use actual date type
 
 type Money = Float -- TODO: choose a safe type for money.
+-- XXX: Money can be null in JSON
 
 -- | Request body to get transactions. Example below:
 -- {
