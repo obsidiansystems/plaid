@@ -17,6 +17,7 @@ library
   -- Modules exported by the library.
   exposed-modules:     Web.Plaid
                      , Web.Plaid.Types
+                     , Web.Plaid.Sample
   
   -- Modules included in this library but not exported.
   other-modules:       Web.Plaid.Internal

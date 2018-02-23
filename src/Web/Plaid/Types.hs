@@ -94,12 +94,12 @@ data TransactionsResponse = TransactionsResponse
 data Transaction = Transaction
   { _transaction_accountId :: Text
   , _transaction_amount :: Money
-  , _transaction_category :: [Text]
-  , _transaction_categoryId :: Text
+  , _transaction_category :: Maybe [Text]
+  , _transaction_categoryId :: Maybe Text
   , _transaction_date :: Date
   , _transaction_location :: Location
   , _transaction_name :: Text
-  , _transaction_paymentMeta :: M.Map Text Text
+  , _transaction_paymentMeta :: M.Map Text (Maybe Text)
   , _transaction_pending :: Bool
   , _transaction_pendingTransactionId :: Maybe Text
   , _transaction_accountOwner :: Maybe Text
@@ -109,10 +109,10 @@ data Transaction = Transaction
   deriving (Show)
 
 data Location = Location
-  { _location_address :: Text
-  , _location_city :: Text
-  , _location_state :: Text
-  , _location_zip :: Text
+  { _location_address :: Maybe Text
+  , _location_city :: Maybe Text
+  , _location_state :: Maybe Text
+  , _location_zip :: Maybe Text
   , _location_lat :: Maybe Text
   , _location_lon :: Maybe Text
   }

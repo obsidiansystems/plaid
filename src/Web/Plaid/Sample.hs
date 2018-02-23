@@ -8,7 +8,7 @@ import Data.Text (Text)
 import Web.Plaid.Types
 
 -- XXX: Temporary access token until we implement the initial workflow of exchange
--- These are retrieved uisng the Python quickstart app on the Sandbox environment.
+-- These are retrieved using the Python quickstart app on the Sandbox environment.
 sandboxAccessToken :: Text
 sandboxAccessToken = "access-sandbox-4754080b-79fd-482b-8fb4-0f4ce80b6158"
 sandboxItemID :: Text
@@ -24,4 +24,4 @@ transactionsRequest = TransactionsRequest
 
 paginationOptions :: PaginationOptions
 paginationOptions = PaginationOptions
-  250 100
+  250 0
