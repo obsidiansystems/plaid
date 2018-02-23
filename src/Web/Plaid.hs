@@ -10,6 +10,7 @@ import Data.Default.Class
 import Network.HTTP.Req
 
 import Web.Plaid.Types
+import qualified Web.Plaid.Sample as Sample
 
 environmentUrl :: Environment -> Text
 environmentUrl = \case
@@ -26,14 +27,7 @@ environmentUrl = \case
 -- /transactions/get
 -- /accounts/balance/get
 
--- XXX: Temporary access token until we implement the initial workflow of exchange
--- These are retrieved uisng the Python quickstart app on the Sandbox environment.
-sandboxAccessToken :: Text
-sandboxAccessToken = "access-sandbox-4754080b-79fd-482b-8fb4-0f4ce80b6158"
-sandboxItemID :: Text
-sandboxItemID = "nKPQWazXyzc45mWZ8K5gSvDA9aodEMix9xM63"
-
-demo :: IO ()
+demo :: IO (TransactionsResponse)
 -- You can either make your monad an instance of 'MonadHttp', or use
 -- 'runReq' in any IO-enabled monad without defining new instances.
 demo = runReq def $ do
@@ -43,8 +37,8 @@ demo = runReq def $ do
   -- One function—full power and flexibility, automatic retrying on timeouts
   -- and such, automatic connection sharing.
   r <- req POST -- method
-    (https "httpbin.org" /: "post") -- safe by construction URL
-    (ReqBodyJson payload) -- use built-in options or add your own
+    (https "sandbox.plaid.com" /: "transactions" /: "get") -- safe by construction URL
+    (ReqBodyJson Sample.transactionsRequest) -- use built-in options or add your own
     jsonResponse -- specify how to interpret response
     mempty       -- query params, headers, explicit port number, etc.
-  liftIO $ print (responseBody r :: Value)
+  return $ responseBody r :: Req TransactionsResponse

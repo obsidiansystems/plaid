@@ -63,6 +63,7 @@ data TransactionsResponse = TransactionsResponse
   , _transactionsResponse_totalTransactions :: Int
   , _transactionsResponse_transactions :: [Transaction]
   }
+  deriving (Show)
 
 -- | A transaction. Example below
 -- {
@@ -105,6 +106,7 @@ data Transaction = Transaction
   , _transaction_transactionId :: Text
   , _transaction_transactionType :: Text
   }
+  deriving (Show)
 
 data Location = Location
   { _location_address :: Text
@@ -114,6 +116,7 @@ data Location = Location
   , _location_lat :: Maybe Text
   , _location_lon :: Maybe Text
   }
+  deriving (Show)
 
 -- | An account type. Example below:
 -- {
@@ -132,14 +135,16 @@ data Account = Account
   , _account_name :: Text
   , _account_officialName :: Text
   , _account_subtype :: Text
-  , _account_type_ :: Text
+  , _account_type :: Text
   }
+  deriving (Show)
 
 data Balances = Balances
   { _balances_available :: Money
   , _balances_current :: Money
   , _balances_limit :: Maybe Money
   }
+  deriving (Show)
 
 -- | An item. Example below
 -- {
@@ -162,6 +167,7 @@ data Item = Item
   , _item_itemId :: Text
   , _item_webhook :: Text
   }
+  deriving (Show)
 
 $(deriveJSON' ''TransactionsRequest)
 $(deriveJSON' ''PaginationOptions)
