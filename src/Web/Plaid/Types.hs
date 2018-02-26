@@ -8,6 +8,7 @@ import Data.Aeson.TH
 import qualified Data.Map as M
 import Data.Scientific (Scientific)
 import Data.Text (Text)
+import Data.Time (Day)
 import GHC.Generics
 
 import Web.Plaid.Internal
@@ -17,7 +18,9 @@ data Environment
   | Development
   | Production
 
-type Date = Text -- TODO: use actual date type
+-- Plaid dates are returned in an ISO 8601 format (YYYY-MM-DD), so we just use
+-- the Day type.
+type Date = Day
 
 type Money = Scientific
 
@@ -38,7 +41,7 @@ data TransactionsRequest = TransactionsRequest
   , _transactionsRequest_secret :: Text
   , _transactionsRequest_accessToken :: Text
   , _transactionsRequest_startDate :: Date
-  , _transactionsRequest_endDate :: Text
+  , _transactionsRequest_endDate :: Date
   , _transactionsRequest_options :: PaginationOptions
   }
 

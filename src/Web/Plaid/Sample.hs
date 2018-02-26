@@ -4,6 +4,7 @@
 module Web.Plaid.Sample where
 
 import Data.Text (Text)
+import Data.Time (fromGregorian)
 
 import Web.Plaid.Types
 
@@ -24,7 +25,10 @@ secret = "fe1eeaf6119031b8bd76831b31cf6b"
 
 transactionsRequest :: TransactionsRequest
 transactionsRequest = TransactionsRequest
-  clientId secret accessToken "2017-01-01" "2017-02-01" paginationOptions
+  clientId secret accessToken start end paginationOptions
+  where
+    start = fromGregorian 2017 1 1
+    end = fromGregorian 2017 2 1
 
 paginationOptions :: PaginationOptions
 paginationOptions = PaginationOptions
