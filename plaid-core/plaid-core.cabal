@@ -1,4 +1,4 @@
-name:                plaid
+name:                plaid-core
 version:             0.1.0
 synopsis:            API client for plaid.com
 license:             BSD3
@@ -15,9 +15,7 @@ cabal-version:       >=1.10
 
 library
   -- Modules exported by the library.
-  exposed-modules:     Web.Plaid
-                     , Web.Plaid.Types
-                     , Web.Plaid.Sample
+  exposed-modules:     Web.Plaid.Types
   
   -- Modules included in this library but not exported.
   other-modules:       Web.Plaid.Internal
@@ -28,15 +26,12 @@ library
   -- Other library packages from which modules are imported.
   build-depends:       base
                      , aeson
-                     , data-default-class
-                     , req
                      , text
                      , time
                      , casing
                      , containers
                      , scientific
                      , template-haskell
-                     , wreq
   
   -- Directories containing source files.
   hs-source-dirs:      src
