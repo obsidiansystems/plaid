@@ -17,14 +17,8 @@ plaidUrl = \case
   Development -> https "development.plaid.com"
   Production -> https "production.plaid.com"
 
-
--- TODO How to get public token?
+-- TODO Exchange API
 -- POST /item/public_token/exchange {get item_id & access_token}
-
--- TODO: Implement
--- /auth/get
--- /transactions/get
--- /accounts/balance/get
 
 demo :: IO (TransactionsResponse)
 demo = runReq def $ do

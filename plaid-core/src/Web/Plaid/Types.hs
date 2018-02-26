@@ -50,9 +50,8 @@ data PaginationOptions = PaginationOptions
   , _paginationOptions_offset :: Int
   }
 
--- $(deriveJSON defaultOptions{fieldLabelModifier = drop 1, constructorTagModifier = quietSnake} ''PaginationOptions)
-
 -- | Response body of getting transactions. Example below
+-- @
 -- {
 -- "accounts":[ ...
 -- ],
@@ -62,6 +61,7 @@ data PaginationOptions = PaginationOptions
 -- "total_transactions": 16,
 -- "transactions":[]
 -- }
+-- @
 data TransactionsResponse = TransactionsResponse
   { _transactionsResponse_accounts :: [Account]
   , _transactionsResponse_item :: Item
