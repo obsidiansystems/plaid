@@ -17,14 +17,18 @@ plaidUrl = \case
   Development -> https "development.plaid.com"
   Production -> https "production.plaid.com"
 
--- TODO Exchange API
--- POST /item/public_token/exchange {get item_id & access_token}
+-- | Get transactions for an item
+getTransactions :: Environment -> TransactionsRequest -> Req TransactionsResponse
+getTransactions env r = responseBody <$> req POST url body jsonResponse mempty
+  where url = plaidUrl env /: "transactions" /: "get"
+        body = ReqBodyJson r
+
+-- | Exchange the public token for access token and item id
+exchangeToken :: Environment -> ExchangeTokenRequest -> Req ExchangeTokenResponse
+exchangeToken env r = responseBody <$> req POST url body jsonResponse mempty
+  where url = plaidUrl env /: "item" /: "public_token" /: "exchange"
+        body = ReqBodyJson r
 
 demo :: IO (TransactionsResponse)
 demo = runReq def $ do
-  r <- req POST
-    (plaidUrl Sandbox /: "transactions" /: "get")
-    (ReqBodyJson Sample.transactionsRequest)
-    jsonResponse
-    mempty
-  return $ responseBody r :: Req TransactionsResponse
+  getTransactions Sandbox Sample.transactionsRequest

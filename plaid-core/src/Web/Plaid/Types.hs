@@ -24,6 +24,35 @@ type Date = Day
 
 type Money = Scientific
 
+
+-- | Request body to exchange token. Example below:
+-- @
+-- {
+--   "client_id": String,
+--   "secret": String,
+--   "public_token": "public-sandbox-5c224a01-8314-4491-a06f-39e193d5cddc"
+-- }
+-- @
+data ExchangeTokenRequest = ExchangeTokenRequest
+  { _exchangeTokenRequest_clientId :: Text
+  , _exchangeTokenRequest_secret :: Text
+  , _exchangeTokenRequest_publicToken :: Text
+  }
+
+-- | Response body of exchanging token. Example below:
+-- @
+-- {
+--   "access_token": "access-sandbox-de3ce8ef-33f8-452c-a685-8671031fc0f6",
+--   "item_id": "M5eVJqLnv3tbzdngLDp9FL5OlDNxlNhlE55op",
+--   "request_id": "Aim3b"
+-- }
+-- @
+data ExchangeTokenResponse = ExchangeTokenResponse
+  { _exchangeTokenResponse_accessToken :: Text
+  , _exchangeTokenResponse_itemId :: Text
+  , _exchangeTokenResponse_requestId :: Text
+  }
+
 -- | Request body to get transactions. Example below:
 -- {
 --   "client_id": "5a8dd7dabdc6a47debd6efcf",
@@ -175,6 +204,8 @@ data Item = Item
   }
   deriving (Show)
 
+$(deriveJSON' ''ExchangeTokenRequest)
+$(deriveJSON' ''ExchangeTokenResponse)
 $(deriveJSON' ''TransactionsRequest)
 $(deriveJSON' ''PaginationOptions)
 $(deriveJSON' ''TransactionsResponse)
