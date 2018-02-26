@@ -3,7 +3,9 @@
 ## Development
 
 ```
+cd plaid-client
 nix-shell
 > cabal repl
->> :l Web.Main
+>> :l Web.Plaid
+>> demo
 ```

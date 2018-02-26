@@ -4,7 +4,6 @@
 
 module Web.Plaid where
 
-import Data.Aeson
 import Data.Default.Class
 import Data.Text (Text)
 import Network.HTTP.Req
