@@ -3,9 +3,12 @@
 
 module Web.Plaid.Types where
 
+import Data.Aeson
 import Data.Aeson.TH
 import qualified Data.Map as M
+import Data.Scientific (Scientific)
 import Data.Text (Text)
+import GHC.Generics
 
 import Web.Plaid.Internal
 
@@ -16,8 +19,7 @@ data Environment
 
 type Date = Text -- TODO: use actual date type
 
-type Money = Float -- TODO: choose a safe type for money.
--- XXX: Money can be null in JSON
+type Money = Scientific
 
 -- | Request body to get transactions. Example below:
 -- {
@@ -141,7 +143,7 @@ data Account = Account
   deriving (Show)
 
 data Balances = Balances
-  { _balances_available :: Money
+  { _balances_available :: Maybe Money
   , _balances_current :: Money
   , _balances_limit :: Maybe Money
   }

@@ -33,6 +33,7 @@ library
                      , text
                      , casing
                      , containers
+                     , scientific
                      , template-haskell
                      , wreq
   
