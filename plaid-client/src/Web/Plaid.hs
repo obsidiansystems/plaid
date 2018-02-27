@@ -2,14 +2,20 @@
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE OverloadedStrings #-}
 
-module Web.Plaid where
+module Web.Plaid (
+  Environment(..),
+  getTransactions,
+  exchangeToken,
+  run,
+  module T)
+  where
 
 import Data.Default.Class
 import Data.Text (Text)
 import Network.HTTP.Req
 
 import qualified Web.Plaid.Sample as Sample
-import Web.Plaid.Types
+import Web.Plaid.Types as T
 
 plaidUrl :: Environment -> Url 'Https
 plaidUrl = \case
@@ -28,6 +34,9 @@ exchangeToken :: Environment -> ExchangeTokenRequest -> Req ExchangeTokenRespons
 exchangeToken env r = responseBody <$> req POST url body jsonResponse mempty
   where url = plaidUrl env /: "item" /: "public_token" /: "exchange"
         body = ReqBodyJson r
+
+run :: Req a -> IO a
+run = runReq def
 
 demo :: IO (TransactionsResponse)
 demo = runReq def $ do

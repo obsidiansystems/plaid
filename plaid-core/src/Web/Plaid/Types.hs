@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE DeriveGeneric #-}
 
 module Web.Plaid.Types where
 
@@ -38,6 +39,7 @@ data ExchangeTokenRequest = ExchangeTokenRequest
   , _exchangeTokenRequest_secret :: Text
   , _exchangeTokenRequest_publicToken :: Text
   }
+  deriving (Eq, Generic, Show)
 
 -- | Response body of exchanging token. Example below:
 -- @
@@ -52,6 +54,7 @@ data ExchangeTokenResponse = ExchangeTokenResponse
   , _exchangeTokenResponse_itemId :: Text
   , _exchangeTokenResponse_requestId :: Text
   }
+  deriving (Eq, Generic, Show)
 
 -- | Request body to get transactions. Example below:
 -- {
@@ -73,11 +76,13 @@ data TransactionsRequest = TransactionsRequest
   , _transactionsRequest_endDate :: Date
   , _transactionsRequest_options :: PaginationOptions
   }
+  deriving (Eq, Generic, Show)
 
 data PaginationOptions = PaginationOptions
   { _paginationOptions_count :: Int
   , _paginationOptions_offset :: Int
   }
+  deriving (Eq, Generic, Show)
 
 -- | Response body of getting transactions. Example below
 -- @
@@ -98,7 +103,7 @@ data TransactionsResponse = TransactionsResponse
   , _transactionsResponse_totalTransactions :: Int
   , _transactionsResponse_transactions :: [Transaction]
   }
-  deriving (Show)
+  deriving (Eq, Generic, Show)
 
 -- | A transaction. Example below
 -- {
@@ -141,7 +146,7 @@ data Transaction = Transaction
   , _transaction_transactionId :: Text
   , _transaction_transactionType :: Text
   }
-  deriving (Show)
+  deriving (Eq, Generic, Show)
 
 data Location = Location
   { _location_address :: Maybe Text
@@ -151,7 +156,7 @@ data Location = Location
   , _location_lat :: Maybe Text
   , _location_lon :: Maybe Text
   }
-  deriving (Show)
+  deriving (Eq, Generic, Show)
 
 -- | An account type. Example below:
 -- {
@@ -172,14 +177,14 @@ data Account = Account
   , _account_subtype :: Text
   , _account_type :: Text
   }
-  deriving (Show)
+  deriving (Eq, Generic, Show)
 
 data Balances = Balances
   { _balances_available :: Maybe Money
   , _balances_current :: Money
   , _balances_limit :: Maybe Money
   }
-  deriving (Show)
+  deriving (Eq, Generic, Show)
 
 -- | An item. Example below
 -- {
@@ -202,7 +207,7 @@ data Item = Item
   , _item_itemId :: Text
   , _item_webhook :: Text
   }
-  deriving (Show)
+  deriving (Eq, Generic, Show)
 
 $(deriveJSON' ''ExchangeTokenRequest)
 $(deriveJSON' ''ExchangeTokenResponse)
