@@ -1,0 +1,6 @@
+compiler: ghcjs
+packages:
+  plaid-core/
+  plaid-client/
+  reflex-dom-plaid/
+  reflex-dom-plaid-demo/
