@@ -1,5 +1,5 @@
 name:                plaid-core
-version:             0.1.0
+version:             0.1.1
 synopsis:            API client for plaid.com
 license:             BSD3
 license-file:        LICENSE
@@ -16,13 +16,13 @@ cabal-version:       >=1.10
 library
   -- Modules exported by the library.
   exposed-modules:     Web.Plaid.Types
-  
+
   -- Modules included in this library but not exported.
   other-modules:       Web.Plaid.Internal
-  
+
   -- LANGUAGE extensions used by modules in this package.
-  -- other-extensions:    
-  
+  -- other-extensions:
+
   -- Other library packages from which modules are imported.
   build-depends:       base
                      , aeson
@@ -32,10 +32,9 @@ library
                      , containers
                      , scientific
                      , template-haskell
-  
+
   -- Directories containing source files.
   hs-source-dirs:      src
-  
+
   -- Base language which the package is written in.
   default-language:    Haskell2010
-  

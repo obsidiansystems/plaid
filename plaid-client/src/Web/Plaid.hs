@@ -14,7 +14,6 @@ import Data.Default.Class
 import Data.Text (Text)
 import Network.HTTP.Req
 
-import qualified Web.Plaid.Sample as Sample
 import Web.Plaid.Types as T
 
 plaidUrl :: Environment -> Url 'Https
@@ -24,20 +23,31 @@ plaidUrl = \case
   Production -> https "production.plaid.com"
 
 -- | Get transactions for an item
-getTransactions :: Environment -> TransactionsRequest -> Req TransactionsResponse
-getTransactions env r = responseBody <$> req POST url body jsonResponse mempty
-  where url = plaidUrl env /: "transactions" /: "get"
-        body = ReqBodyJson r
+getTransactions :: Config -> Text -> Date -> Date -> PaginationOptions -> Req TransactionsResponse
+getTransactions config accessToken startDate endDate paginationOptions =
+  responseBody <$> req POST url body jsonResponse mempty
+    where
+      url = plaidUrl (_config_env config) /: "transactions" /: "get"
+      body = ReqBodyJson r
+      r = TransactionsRequest
+        (_config_clientId config)
+        (_config_secret config)
+        accessToken
+        startDate
+        endDate
+        paginationOptions
 
 -- | Exchange the public token for access token and item id
-exchangeToken :: Environment -> ExchangeTokenRequest -> Req ExchangeTokenResponse
-exchangeToken env r = responseBody <$> req POST url body jsonResponse mempty
-  where url = plaidUrl env /: "item" /: "public_token" /: "exchange"
-        body = ReqBodyJson r
+exchangeToken :: Config -> Text -> Req ExchangeTokenResponse
+exchangeToken config publicToken =
+  responseBody <$> req POST url body jsonResponse mempty
+    where
+      url = plaidUrl (_config_env config) /: "item" /: "public_token" /: "exchange"
+      body = ReqBodyJson r
+      r = ExchangeTokenRequest
+        (_config_clientId config)
+        (_config_secret config)
+        publicToken
 
 run :: Req a -> IO a
 run = runReq def
-
-demo :: IO (TransactionsResponse)
-demo = runReq def $ do
-  getTransactions Sandbox Sample.transactionsRequest

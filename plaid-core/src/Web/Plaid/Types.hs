@@ -18,13 +18,23 @@ data Environment
   = Sandbox
   | Development
   | Production
+  deriving (Eq, Generic, Show)
+
+instance ToJSON Environment
+instance FromJSON Environment
+
+data Config = Config
+  { _config_env :: Environment
+  , _config_clientId :: Text
+  , _config_secret :: Text
+  }
+  deriving (Eq, Generic, Show)
 
 -- Plaid dates are returned in an ISO 8601 format (YYYY-MM-DD), so we just use
 -- the Day type.
 type Date = Day
 
 type Money = Scientific
-
 
 -- | Request body to exchange token. Example below:
 -- @
@@ -209,6 +219,7 @@ data Item = Item
   }
   deriving (Eq, Generic, Show)
 
+$(deriveJSON' ''Config)
 $(deriveJSON' ''ExchangeTokenRequest)
 $(deriveJSON' ''ExchangeTokenResponse)
 $(deriveJSON' ''TransactionsRequest)

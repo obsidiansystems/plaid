@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                plaid-client
-version:             0.1.0
+version:             0.1.1
 -- synopsis:
 -- description:
 license:             BSD3
@@ -17,12 +17,11 @@ cabal-version:       >=1.10
 
 library
   exposed-modules:     Web.Plaid
-                     , Web.Plaid.Sample
   -- other-modules:
   -- other-extensions:
   build-depends:       base
                      , data-default-class
-                     , plaid-core
+                     , plaid-core>=0.1.1
                      , req>=1.0.0
                      , text
                      , time
