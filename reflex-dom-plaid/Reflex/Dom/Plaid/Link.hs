@@ -20,6 +20,7 @@ import Language.Javascript.JSaddle.Value (maybeNullOrUndefined, valToText)
 
 import Reflex.Dom.Core
 
+import Web.Plaid.Types.Core
 import Web.Plaid.Types.Link
 
 plaidLinkDialog
@@ -119,11 +120,11 @@ activatePlaidLinkDialog cfg onResult = do
       Nothing -> pure Nothing
       Just x -> Just <$> f x
 
-    plaidLinkEnvironmentAsText :: PlaidLinkEnvironment -> Text
+    plaidLinkEnvironmentAsText :: Environment -> Text
     plaidLinkEnvironmentAsText = \case
-      PlaidLinkEnvironment_Sandbox -> "sandbox"
-      PlaidLinkEnvironment_Development -> "development"
-      PlaidLinkEnvironment_Production -> "production"
+      Sandbox -> "sandbox"
+      Development -> "development"
+      Production -> "production"
 
     plaidLinkProductAsText :: PlaidLinkProduct -> Text
     plaidLinkProductAsText = \case

@@ -4,36 +4,13 @@
 module Web.Plaid.Types where
 
 import Data.Aeson
-import Data.Aeson.TH
 import qualified Data.Map as M
-import Data.Scientific (Scientific)
 import Data.Text (Text)
 import Data.Time (Day)
 import GHC.Generics
 
 import Web.Plaid.Internal
-
-data Environment
-  = Sandbox
-  | Development
-  | Production
-  deriving (Eq, Generic, Show)
-
-instance ToJSON Environment
-instance FromJSON Environment
-
-data Config = Config
-  { _config_env :: Environment
-  , _config_clientId :: Text
-  , _config_secret :: Text
-  }
-  deriving (Eq, Generic, Show)
-
--- Plaid dates are returned in an ISO 8601 format (YYYY-MM-DD), so we just use
--- the Day type.
-type Date = Day
-
-type Money = Scientific
+import Web.Plaid.Types.Core
 
 -- | Request body to exchange token. Example below:
 -- @

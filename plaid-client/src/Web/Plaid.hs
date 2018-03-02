@@ -7,7 +7,8 @@ module Web.Plaid (
   getTransactions,
   exchangeToken,
   run,
-  module T)
+  module T,
+  module TC)
   where
 
 import Data.Default.Class
@@ -15,6 +16,7 @@ import Data.Text (Text)
 import Network.HTTP.Req
 
 import Web.Plaid.Types as T
+import Web.Plaid.Types.Core as TC
 
 plaidUrl :: Environment -> Url 'Https
 plaidUrl = \case

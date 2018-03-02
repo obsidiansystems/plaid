@@ -16,6 +16,7 @@ cabal-version:       >=1.10
 library
   -- Modules exported by the library.
   exposed-modules:     Web.Plaid.Types
+                     , Web.Plaid.Types.Core
                      , Web.Plaid.Types.Link
 
   -- Modules included in this library but not exported.

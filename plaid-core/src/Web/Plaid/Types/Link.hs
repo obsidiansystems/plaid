@@ -1,10 +1,12 @@
-{-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE OverloadedStrings #-}
 
 module Web.Plaid.Types.Link where
 
 import Data.Text (Text)
 import GHC.Generics (Generic)
+
+import Web.Plaid.Types.Core
 
 -- TODO: Remove Plaid (even PlaidLink) prefix
 
@@ -33,13 +35,6 @@ data PlaidLinkError = PlaidLinkError
   , _plaidLinkError_errorType :: !Text
   } deriving (Eq, Generic, Show)
 
--- TODO: Use Types.Environment
-data PlaidLinkEnvironment
-  = PlaidLinkEnvironment_Sandbox
-  | PlaidLinkEnvironment_Development
-  | PlaidLinkEnvironment_Production
-  deriving (Bounded, Enum, Eq, Ord, Show)
-
 data PlaidLinkProduct
   = PlaidLinkProduct_Auth
   | PlaidLinkProduct_Identity
@@ -49,7 +44,7 @@ data PlaidLinkProduct
 -- TODO: Use Types.Config
 data PlaidLinkConfig = PlaidLinkConfig
   { _plaidLinkConfig_clientName :: !Text
-  , _plaidLinkConfig_env :: !PlaidLinkEnvironment
+  , _plaidLinkConfig_env :: !Environment
   , _plaidLinkConfig_publicKey :: !Text
   , _plaidLinkConfig_products :: ![PlaidLinkProduct]
   } deriving (Eq, Generic, Show)
