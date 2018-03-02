@@ -18,6 +18,8 @@ library
   exposed-modules:     Web.Plaid.Types
                      , Web.Plaid.Types.Core
                      , Web.Plaid.Types.Link
+                     , Web.Plaid.Types.Http
+                     , Web.Plaid.Types.Api
 
   -- Modules included in this library but not exported.
   other-modules:       Web.Plaid.Internal
