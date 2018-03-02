@@ -39,5 +39,3 @@ data LinkConfig = LinkConfig
   , _linkConfig_publicKey :: !Text
   , _linkConfig_products :: ![Product]
   } deriving (Eq, Generic, Show)
-
--- TODO: port demo example
