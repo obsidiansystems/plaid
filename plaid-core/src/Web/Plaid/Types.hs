@@ -1,5 +1,4 @@
 {-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE TemplateHaskell #-}
 {-# LANGUAGE DeriveGeneric #-}
 
 module Web.Plaid.Types where
@@ -219,14 +218,48 @@ data Item = Item
   }
   deriving (Eq, Generic, Show)
 
-$(deriveJSON' ''Config)
-$(deriveJSON' ''ExchangeTokenRequest)
-$(deriveJSON' ''ExchangeTokenResponse)
-$(deriveJSON' ''TransactionsRequest)
-$(deriveJSON' ''PaginationOptions)
-$(deriveJSON' ''TransactionsResponse)
-$(deriveJSON' ''Transaction)
-$(deriveJSON' ''Location)
-$(deriveJSON' ''Account)
-$(deriveJSON' ''Balances)
-$(deriveJSON' ''Item)
+instance FromJSON Config where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON ExchangeTokenRequest where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON ExchangeTokenResponse where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON TransactionsRequest where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON PaginationOptions where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON TransactionsResponse where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON Transaction where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON Location where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON Account where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON Balances where
+  parseJSON = genericParseJSON fieldLabelMod
+instance FromJSON Item where
+  parseJSON = genericParseJSON fieldLabelMod
+
+instance ToJSON Config where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON ExchangeTokenRequest where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON ExchangeTokenResponse where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON TransactionsRequest where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON PaginationOptions where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON TransactionsResponse where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON Transaction where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON Location where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON Account where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON Balances where
+  toJSON = genericToJSON fieldLabelMod
+instance ToJSON Item where
+  toJSON = genericToJSON fieldLabelMod
