@@ -5,7 +5,7 @@ module Main where
 import Reflex.Dom
 
 import Reflex.Dom.Plaid.Link
-
+import qualified Web.Plaid.Types as Plaid
 
 main :: IO ()
 main = mainWidgetWithHead headSection $ do
@@ -18,11 +18,11 @@ main = mainWidgetWithHead headSection $ do
   dyn_ $ ffor pubKeyDyn $ \pubKey -> do
     text "You can use 'user_good' / 'pass_good' for test credentials in the sandbox"
     el "br" blank
-    done <- plaidLinkDialog (PlaidLinkConfig
-      { _plaidLinkConfig_clientName = "Test"
-      , _plaidLinkConfig_env = PlaidLinkEnvironment_Sandbox
-      , _plaidLinkConfig_publicKey = pubKey
-      , _plaidLinkConfig_products = [PlaidLinkProduct_Transactions]
+    done <- plaidLinkDialog (Plaid.LinkConfig
+      { Plaid._linkConfig_clientName = "Test"
+      , Plaid._linkConfig_env = Plaid.Sandbox
+      , Plaid._linkConfig_publicKey = pubKey
+      , Plaid._linkConfig_products = [Plaid.Product_Transactions]
       } <$ go)
 
     el "br" blank

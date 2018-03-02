@@ -16,6 +16,7 @@ executable demo
     -O2
   build-depends:
       base
+    , plaid-core
     , reflex-dom
     , reflex-dom-plaid
   default-language: Haskell2010
