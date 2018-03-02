@@ -1,5 +1,5 @@
 name:                plaid-core
-version:             0.1.1
+version:             0.1.2
 synopsis:            API client for plaid.com
 license:             BSD3
 license-file:        LICENSE
@@ -16,6 +16,7 @@ cabal-version:       >=1.10
 library
   -- Modules exported by the library.
   exposed-modules:     Web.Plaid.Types
+                     , Web.Plaid.Types.Link
 
   -- Modules included in this library but not exported.
   other-modules:       Web.Plaid.Internal
