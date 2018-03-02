@@ -35,16 +35,12 @@ data PlaidLinkError = PlaidLinkError
   , _plaidLinkError_errorType :: !Text
   } deriving (Eq, Generic, Show)
 
-data PlaidLinkProduct
-  = PlaidLinkProduct_Auth
-  | PlaidLinkProduct_Identity
-  | PlaidLinkProduct_Transactions
-  deriving (Bounded, Enum, Eq, Ord, Show)
-
--- TODO: Use Types.Config
+-- TODO: Use Types.Config + separate products event
 data PlaidLinkConfig = PlaidLinkConfig
   { _plaidLinkConfig_clientName :: !Text
   , _plaidLinkConfig_env :: !Environment
   , _plaidLinkConfig_publicKey :: !Text
-  , _plaidLinkConfig_products :: ![PlaidLinkProduct]
+  , _plaidLinkConfig_products :: ![Product]
   } deriving (Eq, Generic, Show)
+
+-- TODO: port demo example

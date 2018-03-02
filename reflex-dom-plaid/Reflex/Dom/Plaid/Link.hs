@@ -13,7 +13,6 @@ import Control.Monad (join)
 import Control.Monad.Trans (liftIO)
 import Data.Maybe (fromMaybe)
 import Data.Text (Text)
-import GHC.Generics (Generic)
 import GHCJS.DOM.Types (JSM, MonadJSM, fromJSValUnchecked, liftJSM)
 import Language.Javascript.JSaddle.Object (fun, js, js0, js1, jsg, jss, obj)
 import Language.Javascript.JSaddle.Value (maybeNullOrUndefined, valToText)
@@ -126,11 +125,11 @@ activatePlaidLinkDialog cfg onResult = do
       Development -> "development"
       Production -> "production"
 
-    plaidLinkProductAsText :: PlaidLinkProduct -> Text
+    plaidLinkProductAsText :: Product -> Text
     plaidLinkProductAsText = \case
-      PlaidLinkProduct_Auth -> "auth"
-      PlaidLinkProduct_Identity -> "identity"
-      PlaidLinkProduct_Transactions -> "transactions"
+      Product_Auth -> "auth"
+      Product_Identity -> "identity"
+      Product_Transactions -> "transactions"
 
     t_ :: Text -> Text
     t_ = id
