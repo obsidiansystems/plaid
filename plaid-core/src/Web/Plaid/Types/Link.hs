@@ -3,6 +3,7 @@
 
 module Web.Plaid.Types.Link where
 
+import Data.Aeson
 import Data.Text (Text)
 import GHC.Generics (Generic)
 
@@ -39,3 +40,8 @@ data LinkConfig = LinkConfig
   , _linkConfig_publicKey :: !Text
   , _linkConfig_products :: ![Product]
   } deriving (Eq, Generic, Show)
+
+instance ToJSON LinkInstitution
+instance FromJSON LinkInstitution
+instance ToJSON LinkSuccess
+instance FromJSON LinkSuccess
