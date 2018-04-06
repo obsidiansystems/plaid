@@ -7,9 +7,9 @@ version:             0.1.1
 -- description:
 license:             BSD3
 license-file:        LICENSE
-author:              Sridhar Ratnakumar
-maintainer:          srid@srid.ca
--- copyright:
+author:              Obsidian Systems LLC
+maintainer:          maintainer@obsidian.systems
+copyright:           Copyright (C) Obsidian Systems LLC 2018
 category:            Web
 build-type:          Simple
 extra-source-files:  ChangeLog.md
