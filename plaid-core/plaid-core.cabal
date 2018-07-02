@@ -1,0 +1,45 @@
+name:                plaid-core
+version:             0.1.2
+synopsis:            API client for plaid.com
+license:             BSD3
+license-file:        LICENSE
+author:              Obsidian Systems LLC
+maintainer:          maintainer@obsidian.systems
+copyright:           Copyright (C) Obsidian Systems LLC 2018
+category:            Web
+build-type:          Simple
+
+extra-source-files:  ChangeLog.md
+
+cabal-version:       >=1.10
+
+
+library
+  -- Modules exported by the library.
+  exposed-modules:     Web.Plaid.Types
+                     , Web.Plaid.Types.Core
+                     , Web.Plaid.Types.Link
+                     , Web.Plaid.Types.Http
+                     , Web.Plaid.Types.Api
+
+  -- Modules included in this library but not exported.
+  other-modules:       Web.Plaid.Internal
+
+  -- LANGUAGE extensions used by modules in this package.
+  -- other-extensions:
+
+  -- Other library packages from which modules are imported.
+  build-depends:       base
+                     , aeson
+                     , text
+                     , time
+                     , casing
+                     , containers
+                     , scientific
+                     , template-haskell
+
+  -- Directories containing source files.
+  hs-source-dirs:      src
+
+  -- Base language which the package is written in.
+  default-language:    Haskell2010
