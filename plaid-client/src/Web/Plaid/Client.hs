@@ -8,7 +8,6 @@ module Web.Plaid.Client (
   run)
   where
 
-import Data.Default.Class
 import Data.Text (Text)
 import Network.HTTP.Req
 
@@ -48,4 +47,4 @@ exchangeToken config publicToken =
         publicToken
 
 run :: Req a -> IO a
-run = runReq def
+run = runReq defaultHttpConfig
